@@ -36,11 +36,12 @@ public class BbsController {
 		ArrayList<Article> articleList = new ArrayList<Article>();
 		session.setAttribute("articleList", articleList);
 		
+		// 追加　開始
 		String tokun = UUID.randomUUID().toString();
 		session.setAttribute("tokun", tokun);
+		// 追加　終了
+
 		// 投稿画面へ遷移
-		
-		
 		return "bbs";
 	}
 
@@ -55,11 +56,13 @@ public class BbsController {
 	 */
 	@RequestMapping("/postArticle")
 	public String postArticle(String name, String body,String tokun) {
-		String tokun1 = (String) session.getAttribute("tokun");
-		if(tokun==null || !(tokun.equals(tokun1))){
-			
+		
+		// 追加 開始
+		String tokunInSession = (String) session.getAttribute("tokun");
+		if (tokun == null || !(tokun.equals(tokunInSession))) {
 			return "error";
 		}
+		// 追加　終了
 		
 		List<Article> articleList = (List<Article>) session.getAttribute("articleList");
 		Article article = new Article(name, body);

@@ -21,7 +21,9 @@
 	<input type="text" name="name"><br>
 	内容<br>
 	<textarea rows="5" cols="20" name="body"></textarea><br>
-	 <input type="hidden" name="tokun" value="${tokun}">
+	<!-- 追加　開始 -->
+	<input type="hidden" name="tokun" value="${tokun}">
+	<!-- 追加　終了 -->
 	<input type="submit" value="投稿"><br>
 </form>
 
