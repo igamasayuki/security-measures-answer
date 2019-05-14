@@ -9,11 +9,11 @@
 </head>
 <body>
 <h3>XSS脆弱性の確認</h3>
-<p>内容に<br>
+<p>【名前】に<br>
 「&lt;script&gt;alert("XSS！");&lt;/script&gt;」<br>
 と入力し投稿ボタンを押してください。</p>
 <h3>XSRF脆弱性の確認</h3>
-<p>内容に<br>
+<p>【内容】に<br>
 「このページ面白いよ！&lt;br&gt;&lt;a href="http://localhost:8080/security/xsrfattack.html"&gt;クリックしてみて！&lt;/a&gt;」<br>
 と入力し投稿ボタンを押してください。</p>
 <form action="${pageContext.request.contextPath}/bbs/postArticle" method="post">
