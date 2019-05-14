@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.runy.security.security_measures.domain.Member;
@@ -42,10 +44,11 @@ public class MemberRepository {
 	 */
 	public List<Member> findByLikeName(String name) {
 		String sql = "SELECT id, name, mail_address, password, is_admin "
-				   + "FROM members WHERE name like '%" + name + "%' "
+				   + "FROM members WHERE name like :name "
 				   + "AND is_admin != true";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", "%" + name + "%");
 		try {
-			List<Member> members = jdbcTemplate.query(sql, MEMBER_ROW_MAPPER);
+			List<Member> members = jdbcTemplate.query(sql, param, MEMBER_ROW_MAPPER);
 			return members;
 		} catch (DataAccessException e) {
 			e.printStackTrace();
