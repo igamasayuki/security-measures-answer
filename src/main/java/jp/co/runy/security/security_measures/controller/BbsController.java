@@ -69,6 +69,9 @@ public class BbsController {
 		ArticleService articleService = new ArticleService();
 		articleService.postArticle(articleList, article);
 		
+		// 追加 開始
+		session.removeAttribute("token");
+		// 追加　終了
 		
 		return "bbs";
 	}
